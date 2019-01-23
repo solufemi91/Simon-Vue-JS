@@ -43,19 +43,15 @@ var app = new Vue({
 
     },
 
-    respondToClickEventOfBoxes(index){
+    respondToClickEventOfBoxes(colour){
       if(this.clickCounter < this.level && this.incorrectClicks == 0){
 
-        // this.boxIClicked = $(this).attr('id');
-        this.boxIClicked = this.colours[index]
-        // $(this).css('backgroundColor',this.boxIClicked);
-      // get the square with same index, shade it the colour that was captured
-         test = document.getElementsByClassName('boxes')[index].style.backgroundColor = this.boxIClicked
+        document.getElementById(this.boxIClicked = colour).style.backgroundColor = colour
 
 
       //   clickreg();
       //   // this stores the choices made by the player that shall be later compared to the computer's random selections
-      //   playersChoice.push(boxIClicked);
+      //   playersChoice.push(colour);
       //   indexCounter++;
       //   clickCounter++;
       //   compareArrays();

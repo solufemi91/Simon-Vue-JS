@@ -19,12 +19,8 @@
       <table>
         <thead>
           <tr>
-            <td class="boxes" @click="respondToClickEventOfBoxes(index)" v-for="(colour, index) in colours">
-              {{colour}}
+            <td class="boxes" @click="respondToClickEventOfBoxes(colour)" v-for="colour in colours" :id="colour">
             </td>
-
-            <!-- <td @click="respondToClickEventOfBoxes"class="boxes"id="red"data-num="0"></td> -->
-            <!-- <td @click="respondToClickEventOfBoxes"class="boxes"id="blue"data-num="1"></td> -->
           </tr>
         </thead>
         <!-- <tbody>
