@@ -8,7 +8,12 @@ var app = new Vue({
     boxes: 0,
     level: 1,
     colourBoxInterval: 0,
-    promptToEnter: "Copy the pattern"
+    promptToEnter: "Copy the pattern",
+    clickCounter: 0,
+    incorrectClicks: 0,
+    boxIClicked: 0,
+    colours: ['red', 'blue', 'green', 'yellow']
+
 
   },
   methods: {
@@ -37,6 +42,25 @@ var app = new Vue({
       }
 
     },
+
+    respondToClickEventOfBoxes(index){
+      if(this.clickCounter < this.level && this.incorrectClicks == 0){
+
+        // this.boxIClicked = $(this).attr('id');
+        this.boxIClicked = this.colours[index]
+        // $(this).css('backgroundColor',this.boxIClicked);
+      // get the square with same index, shade it the colour that was captured
+         test = document.getElementsByClassName('boxes')[index].style.backgroundColor = this.boxIClicked
+
+
+      //   clickreg();
+      //   // this stores the choices made by the player that shall be later compared to the computer's random selections
+      //   playersChoice.push(boxIClicked);
+      //   indexCounter++;
+      //   clickCounter++;
+      //   compareArrays();
+      }
+    }
 
 
   },

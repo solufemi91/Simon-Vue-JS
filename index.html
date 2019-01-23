@@ -19,20 +19,25 @@
       <table>
         <thead>
           <tr>
-            <td class="boxes"id="red"data-num="0"></td>
-            <td class="boxes"id="blue"data-num="1"></td>
+            <td class="boxes" @click="respondToClickEventOfBoxes(index)" v-for="(colour, index) in colours">
+              {{colour}}
+            </td>
+
+            <!-- <td @click="respondToClickEventOfBoxes"class="boxes"id="red"data-num="0"></td> -->
+            <!-- <td @click="respondToClickEventOfBoxes"class="boxes"id="blue"data-num="1"></td> -->
           </tr>
         </thead>
-        <tbody>
+        <!-- <tbody>
           <tr>
-            <td class="boxes"id="green"data-num="2"></td>
-            <td class="boxes"id="yellow"data-num="3"></td>
+            <td @click="respondToClickEventOfBoxes"class="boxes"id="green"data-num="2"></td>
+            <td @click="respondToClickEventOfBoxes"class="boxes"id="yellow"data-num="3"></td>
           </tr>
-        </tbody>
+        </tbody> -->
       </table>
       <a href="./start.html"><button id="back" type="button" name="button">Go back to the homepage</button></a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
     <script src="js/main.js" async></script>
   </body>
 </html>
