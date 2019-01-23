@@ -9,7 +9,7 @@
   <body>
     <div id="game">
       <button @click="makeColoursFlashSetInterval" id="startButton" type="button" name="button">Start</button>
-      <h2 id="promptToEnter"></h2>
+      <h2 id="promptToEnter" v-if="checkCounter">{{promptToEnter}}</h2>
       <p id="numberOfClicksMade"></p>
       <h1 id='congratulations'></h1>
       <p id='scoreboard'>Score:</p>
