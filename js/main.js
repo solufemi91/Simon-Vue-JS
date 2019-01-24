@@ -1,27 +1,50 @@
-var app = new Vue({
-  el: '#game',
-  data: {
-    randomColor: 0,
-    counter: 0,
-    randomBox: 0,
-    computersChoice : [],
-    playersChoice : [],
-    boxes: 0,
-    level: 1,
-    colourBoxInterval: 0,
-    promptToEnter: "Copy the pattern",
-    clickCounter: 0,
-    incorrectClicks: 0,
-    correctClicks: 0,
-    boxIClicked: 0,
-    colours: ['red', 'blue', 'green', 'yellow'],
-    indexCounter : -1,
-    totalscore : 0,
-    congrats: false,
-    lostRound: false
 
+Vue.component('game', {
+  template: `
+  <div class="game">
+    <button @click="makeColoursFlashSetInterval" id="startButton" type="button" name="button">Start</button>
+    <h2 id="promptToEnter" v-if="checkCounter">{{promptToEnter}}</h2>
+    <p id="numberOfClicksMade"></p>
+    <h1 class='perfomanceMessage' v-if="congrats">Well done! Click Start to proceed to level: {{level}}</h1>
+    <h1 class='perfomanceMessage' v-else-if="lostRound">Unfortunately you lost this round. Click start to try again"</h1>
+    <p id='scoreboard'>Score: {{totalscore}}</p>
+    <div class="clickRegisterDiv">
+      <h2 id='clickRegister'></h2>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <td class="boxes" @click="respondToClickEventOfBoxes(colour)" v-for="colour in colours" :id="colour">
+          </td>
+        </tr>
+      </thead>
+    </table>
+    <a href="./start.html"><button id="back" type="button" name="button">Go back to the homepage</button></a>
+  </div>`,
 
+  data(){
+    return{
+      randomColor: 0,
+      counter: 0,
+      randomBox: 0,
+      computersChoice : [],
+      playersChoice : [],
+      boxes: 0,
+      level: 1,
+      colourBoxInterval: 0,
+      promptToEnter: "Copy the pattern",
+      clickCounter: 0,
+      incorrectClicks: 0,
+      correctClicks: 0,
+      boxIClicked: 0,
+      colours: ['red', 'blue', 'green', 'yellow'],
+      indexCounter : -1,
+      totalscore : 0,
+      congrats: false,
+      lostRound: false
+    }
   },
+
   methods: {
     makeColoursFlashSetInterval(){
       this.resetter();
@@ -103,8 +126,6 @@ var app = new Vue({
       this.correctClicks = 0;
       this.incorrectClicks = 0;
     }
-
-
   },
 
   computed: {
@@ -115,8 +136,11 @@ var app = new Vue({
         return true
       }
     }
-
   }
 
 
+})
+
+var app = new Vue({
+  el: '#app'
 })
