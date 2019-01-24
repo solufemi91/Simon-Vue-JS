@@ -11,8 +11,9 @@
       <button @click="makeColoursFlashSetInterval" id="startButton" type="button" name="button">Start</button>
       <h2 id="promptToEnter" v-if="checkCounter">{{promptToEnter}}</h2>
       <p id="numberOfClicksMade"></p>
-      <h1 id='congratulations'></h1>
-      <p id='scoreboard'>Score:</p>
+      <h1 class='perfomanceMessage' v-if="congrats">Well done! Click Start to proceed to level: {{level}}</h1>
+      <h1 class='perfomanceMessage' v-else-if="lostRound">Unfortunately you lost this round. Click start to try again"</h1>
+      <p id='scoreboard'>Score: {{totalscore}}</p>
       <div class="clickRegisterDiv">
         <h2 id='clickRegister'></h2>
       </div>

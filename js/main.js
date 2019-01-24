@@ -5,19 +5,27 @@ var app = new Vue({
     counter: 0,
     randomBox: 0,
     computersChoice : [],
+    playersChoice : [],
     boxes: 0,
     level: 1,
     colourBoxInterval: 0,
     promptToEnter: "Copy the pattern",
     clickCounter: 0,
     incorrectClicks: 0,
+    correctClicks: 0,
     boxIClicked: 0,
-    colours: ['red', 'blue', 'green', 'yellow']
+    colours: ['red', 'blue', 'green', 'yellow'],
+    indexCounter : -1,
+    totalscore : 0,
+    congrats: false,
+    lostRound: false
 
 
   },
   methods: {
     makeColoursFlashSetInterval(){
+      this.resetter();
+      this.congrats = false
       this.colourBoxInterval =  setInterval(this.makeColoursFlash,500);
     },
 
@@ -48,14 +56,52 @@ var app = new Vue({
 
         document.getElementById(this.boxIClicked = colour).style.backgroundColor = colour
 
-
-      //   clickreg();
-      //   // this stores the choices made by the player that shall be later compared to the computer's random selections
-      //   playersChoice.push(colour);
-      //   indexCounter++;
-      //   clickCounter++;
-      //   compareArrays();
+        //clickreg();
+       // this stores the choices made by the player that shall be later compared to the computer's random selections
+         this.playersChoice.push(colour);
+         this.indexCounter++;
+         this.clickCounter++;
+         this.compareArrays();
       }
+    },
+
+    compareArrays(){
+
+      if(this.computersChoice[this.indexCounter] === this.playersChoice[this.indexCounter])
+      {
+        this.correctClicks++;
+        // for e.g, on level 8, if 8 correct clicks are made, an alert message is displayed saying that the player has won the level of the game
+        if(this.correctClicks == this.level){
+          //$congratulationsMessage.html("Level " + level + " passed! Click Start to proceed to next level");
+          this.congrats = true
+          this.level++;
+          this.totalscore += this.correctClicks;
+        }
+
+      }
+
+      // this block of code is executed as soon as an incorrect choice is made
+      else {
+        this.incorrectClicks++
+        this.lostRound = true
+        // $congratulationsMessage.html("Unfortunately you lost this round. Click start to try again")
+        // $displayMessage.html('Score ' + correctClicks);
+
+      }
+
+    },
+
+    resetter(){
+      this.congrats = false
+      this.lostRound = false
+      this.checkCounter = false
+      this.indexCounter = -1
+      this.playersChoice = [];
+      this.computersChoice = [];
+      $('.boxes').css('backgroundColor','white');
+      this.clickCounter = 0;
+      this.correctClicks = 0;
+      this.incorrectClicks = 0;
     }
 
 
